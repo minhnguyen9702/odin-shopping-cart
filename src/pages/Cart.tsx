@@ -1,12 +1,13 @@
 import NavBar from "../components/NavBar";
 import Wrapper from "../components/Wrapper";
 
-const Products = () => {
+const Cart = () => {
   return (
     <Wrapper>
       <NavBar />
+      <p>This is a cart</p>
     </Wrapper>
   );
 };
 
-export default Products;
+export default Cart;

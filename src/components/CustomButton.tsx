@@ -1,9 +1,10 @@
 type CustomButtonProps = {
+  str: string;
   onClick: Function;
 };
 
-const CustomButton = ({ onClick }: CustomButtonProps) => {
-  return <button onClick={() => onClick()}>Click Me</button>;
+const CustomButton = ({ str, onClick }: CustomButtonProps) => {
+  return <button onClick={() => onClick()}>{str}</button>;
 };
 
 export default CustomButton;
