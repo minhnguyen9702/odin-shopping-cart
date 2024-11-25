@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import Wrapper from "../components/Wrapper";
 import ProductCard from "../components/ProductCard";
+import Loading from "../components/Loading";
+import CustomError from "../components/CustomError";
 
 type Product = {
   id: number;
@@ -27,7 +29,6 @@ const Products = () => {
         return res.json();
       })
       .then((json) => {
-        console.log(json);
         setProducts(json);
         setLoading(false);
       })
@@ -68,9 +69,7 @@ const Products = () => {
   if (loading) {
     return (
       <Wrapper>
-        <div className="md:flex grow justify-center items-center text-2xl font-semibold animate-pulse">
-          Loading...
-        </div>
+        <Loading/>
       </Wrapper>
     );
   }
@@ -78,9 +77,7 @@ const Products = () => {
   if (error) {
     return (
       <Wrapper>
-        <div className="md:flex grow justify-center text-2xl text-red-700">
-          Error: {error}
-        </div>
+        <CustomError err={error}/>
       </Wrapper>
     );
   }
