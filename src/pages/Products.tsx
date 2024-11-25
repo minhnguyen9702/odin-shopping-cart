@@ -40,7 +40,7 @@ const Products = () => {
   useEffect(() => {
     if (loading) return;
 
-    let sorted: Product[];
+    let sorted: Product[] = products;
     if (sortOrder === "price-asc") {
       sorted = [...products].sort(
         (a, b) => parseFloat(a.price) - parseFloat(b.price)

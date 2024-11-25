@@ -1,10 +1,10 @@
 import Wrapper from "../components/Wrapper";
 
-const Products = () => {
+const ProductDetail = () => {
   return (
     <Wrapper>
     </Wrapper>
   );
 };
 
-export default Products;
+export default ProductDetail;
