@@ -8,7 +8,6 @@ import cowboy from "../assets/cowboy.jpg";
 function Home() {
   return (
     <Wrapper>
-      <NavBar />
       <div className="md:flex grow items-center">
         <div className="mx-auto">
           <img
