@@ -1,30 +1,40 @@
 import { useEffect, useState } from "react";
 import Wrapper from "../components/Wrapper";
+import ProductCard from "../components/ProductCard";
+
+type Product = {
+  id: number;
+  title: string;
+  price: string;
+  category: string;
+  description: string;
+  image: string;
+};
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     fetch("https://fakestoreapi.com/products")
-      .then(res => {
+      .then((res) => {
         if (!res.ok) {
-          throw new Error('Network response was not ok')
+          throw new Error("Network response was not ok");
         }
         return res.json();
       })
-      .then(json => {
-        console.log(json)
+      .then((json) => {
+        console.log(json);
         setProducts(json);
-        setLoading(false)
+        setLoading(false);
       })
-      .catch(err => {
+      .catch((err) => {
         setError(err.message);
-        setLoading(false)
-      })
+        setLoading(false);
+      });
   }, []);
-  
+
   if (loading) {
     return (
       <Wrapper>
@@ -47,7 +57,11 @@ const Products = () => {
 
   return (
     <Wrapper>
-      <div className="md:flex grow"></div>
+      <div className="grow flex flex-wrap justify-center">
+        {products.map((product) => (
+          <ProductCard product={product}/>
+        ))}
+      </div>
     </Wrapper>
   );
 };
