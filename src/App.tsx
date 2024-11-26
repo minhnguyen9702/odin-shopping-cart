@@ -17,6 +17,7 @@ const App = () => {
   };
 
   const [cart, setCart] = useState<Product[]>([]);
+  const [cartLength, setCartLength] = useState<number>(cart.length)
 
   const addToCart = (newItem: Product) => {
     setCart((prev) => {
@@ -27,6 +28,7 @@ const App = () => {
 
   // Log the cart after it changes
   useEffect(() => {
+    setCartLength(cart.length)
     console.log("Updated Cart:", cart);
   }, [cart]);
 
@@ -34,7 +36,7 @@ const App = () => {
     {
       path: "/",
       element: (
-        <Wrapper>
+        <Wrapper cartLength={cartLength}>
           <Home />
         </Wrapper>
       ),
@@ -42,7 +44,7 @@ const App = () => {
     {
       path: "/products",
       element: (
-        <Wrapper>
+        <Wrapper cartLength={cartLength}>
           <Products />
         </Wrapper>
       ),
@@ -50,7 +52,7 @@ const App = () => {
     {
       path: "/products/:id",
       element: (
-        <Wrapper>
+        <Wrapper cartLength={cartLength}>
           <ProductDetail addToCart={addToCart} />
         </Wrapper>
       ),
@@ -58,7 +60,7 @@ const App = () => {
     {
       path: "/cart",
       element: (
-        <Wrapper>
+        <Wrapper cartLength={cartLength}>
           <Cart />
         </Wrapper>
       ),
