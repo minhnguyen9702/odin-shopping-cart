@@ -16,20 +16,42 @@ const App = () => {
     image: string;
   };
 
-  const [cart, setCart] = useState<Product[]>([]);
-  const [cartLength, setCartLength] = useState<number>(cart.length)
+  const [cart, setCart] = useState<
+    Map<number, { product: Product; quantity: number }>
+  >(new Map());
+  const [cartLength, setCartLength] = useState<number>(0);
 
-  const addToCart = (newItem: Product) => {
-    setCart((prev) => {
-      const updatedCart = [...prev, newItem];
+  const addToCart = (newItem: Product, quantityToAdd: number) => {
+    setCart((prevCart) => {
+      const updatedCart = new Map(prevCart);
+
+      if (updatedCart.has(newItem.id)) {
+        // Replace the existing item with a new object
+        const existingItem = updatedCart.get(newItem.id);
+        if (existingItem) {
+          updatedCart.set(newItem.id, {
+            ...existingItem,
+            quantity: existingItem.quantity + quantityToAdd,
+          });
+        }
+      } else {
+        updatedCart.set(newItem.id, {
+          product: newItem,
+          quantity: quantityToAdd,
+        });
+      }
+
       return updatedCart;
     });
   };
 
-  // Log the cart after it changes
   useEffect(() => {
-    setCartLength(cart.length)
-    console.log("Updated Cart:", cart);
+    const totalQuantity = Array.from(cart.values()).reduce(
+      (sum, item) => sum + item.quantity,
+      0
+    );
+    setCartLength(totalQuantity);
+    console.log(cart);
   }, [cart]);
 
   const routes = [
@@ -61,7 +83,7 @@ const App = () => {
       path: "/cart",
       element: (
         <Wrapper cartLength={cartLength}>
-          <Cart />
+          <Cart cart={cart} cartLength={cartLength} />
         </Wrapper>
       ),
     },

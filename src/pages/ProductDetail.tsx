@@ -13,7 +13,7 @@ type Product = {
 };
 
 type ProductDetailProps = {
-  addToCart: (product: Product) => void;
+  addToCart: (product: Product, quantity: number) => void;
 };
 
 const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
@@ -54,7 +54,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
   if (error) {
     return (
       <>
-        <CustomError err="error" />
+        <CustomError err={error} />
       </>
     );
   }
@@ -107,11 +107,8 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
             <button
               className="my-2 px-6 py-4 rounded-lg bg-gray-200 hover:bg-gray-400 md:self-end"
               onClick={() => {
-                let quantityToAdd = quantity;
-                while (quantityToAdd > 0) {
-                  quantityToAdd--
-                  addToCart(product)
-                }
+                const quantityToAdd = quantity;
+                addToCart(product, quantityToAdd);
               }}
             >
               Add to Cart

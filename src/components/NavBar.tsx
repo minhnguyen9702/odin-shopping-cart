@@ -8,7 +8,7 @@ const NavBar: React.FC<NavBarProps> = ({ cartLength }) => {
   return (
     <>
       <Link to="/">
-        <h1 className="text-center text-6xl mb-4">BuyBye!</h1>
+        <h1 className="text-center text-8xl font-semibold mb-4">BuyBye!</h1>
       </Link>
       <div className="flex justify-between p-3 border-y-2 mb-2">
         <Link to="/" className="hover:text-sky-400 md:pl-4">
