@@ -13,14 +13,26 @@ type CartProps = {
   cart: Map<number, { product: Product; quantity: number }>;
   cartLength: number;
   updateCart: (productId: number, newQuantity: number) => void;
+  subTotal: string;
+  clearCart: () => void;
 };
 
-const Cart: React.FC<CartProps> = ({ cart, cartLength, updateCart }) => {
+const Cart: React.FC<CartProps> = ({
+  cart,
+  cartLength,
+  updateCart,
+  subTotal,
+  clearCart,
+}) => {
   if (cartLength === 0) return <Empty />;
 
   return (
     <div className="grow">
-      <h1>Cart ({cartLength} items)</h1>
+      {cartLength === 1 ? (
+        <h2 className="text-lg">Cart ({cartLength} item)</h2>
+      ) : (
+        <h2 className="text-lg">Cart ({cartLength} items)</h2>
+      )}
       {Array.from(cart.values()).map(({ product, quantity }) => (
         <div key={product.id} className="md:flex justify-between my-4">
           <div className="flex justify-start">
@@ -32,8 +44,11 @@ const Cart: React.FC<CartProps> = ({ cart, cartLength, updateCart }) => {
               />
             </div>
             <div className="p-2">
-              <h3>{product.title}</h3>
-              <button onClick={() => updateCart(product.id, 0)}>
+              <h3 className="text-lg">{product.title}</h3>
+              <button
+                className="text-red-600 hover:text-red-500"
+                onClick={() => updateCart(product.id, 0)}
+              >
                 Remove Item
               </button>
             </div>
@@ -44,7 +59,7 @@ const Cart: React.FC<CartProps> = ({ cart, cartLength, updateCart }) => {
               <input
                 type="number"
                 value={quantity}
-                min="1" 
+                min="1"
                 onChange={(e) => {
                   const newQuantity = parseInt(e.target.value, 10);
                   updateCart(product.id, newQuantity);
@@ -52,10 +67,24 @@ const Cart: React.FC<CartProps> = ({ cart, cartLength, updateCart }) => {
                 className="border rounded px-3 py-2 w-16 md:w-20 text-center"
               />
             </label>
-            <p className="py-2 text-gray-700">Total Price: ${(parseFloat(product.price) * quantity).toFixed(2)}</p>
+            <p className="py-2 text-gray-700">
+              Total Price: ${(parseFloat(product.price) * quantity).toFixed(2)}
+            </p>
           </div>
         </div>
       ))}
+      <div className="text-lg text-right">Subtotal : {subTotal}</div>
+      <div className="space-x-4 flex justify-end my-2">
+        <button
+          onClick={clearCart}
+          className="px-5 py-3 rounded bg-gray-200 border-2 border-black hover:bg-gray-400"
+        >
+          Clear Items
+        </button>
+        <button className="px-5 py-3 rounded border-2 border-black bg-sky-200 hover:bg-sky-400">
+          Check Out
+        </button>
+      </div>
     </div>
   );
 };

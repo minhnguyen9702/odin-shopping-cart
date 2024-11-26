@@ -20,6 +20,7 @@ const App = () => {
     Map<number, { product: Product; quantity: number }>
   >(new Map());
   const [cartLength, setCartLength] = useState<number>(0);
+  const [subTotal, setSubTotal] = useState<string>("")
 
   const addToCart = (newItem: Product, quantityToAdd: number) => {
     setCart((prevCart) => {
@@ -71,8 +72,21 @@ const App = () => {
       0
     );
     setCartLength(totalQuantity);
+    setSubTotal(calculateSubtotal())
     console.log(cart);
   }, [cart]);
+
+  const calculateSubtotal = () => {
+    const subtotal = Array.from(cart.values()).reduce((total, { product, quantity }) => {
+      return total + parseFloat(product.price) * quantity;
+    }, 0);
+
+    return subtotal.toFixed(2);
+  };
+
+  const clearCart = () => {
+    setCart(new Map<number, { product: Product; quantity: number }>());
+  };
 
   const routes = [
     {
@@ -103,7 +117,7 @@ const App = () => {
       path: "/cart",
       element: (
         <Wrapper cartLength={cartLength}>
-          <Cart cart={cart} cartLength={cartLength} updateCart={updateCart}/>
+          <Cart cart={cart} cartLength={cartLength} updateCart={updateCart} subTotal={subTotal} clearCart={clearCart}/>
         </Wrapper>
       ),
     },

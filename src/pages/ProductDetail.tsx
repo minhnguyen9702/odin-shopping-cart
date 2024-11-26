@@ -105,7 +105,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
               </button>
             </div>
             <button
-              className="my-2 px-6 py-4 rounded-lg bg-gray-200 hover:bg-gray-400 md:self-end"
+              className="my-2 px-5 py-3 rounded border-2 border-black bg-gray-200 hover:bg-gray-400 md:self-end"
               onClick={() => {
                 const quantityToAdd = quantity;
                 addToCart(product, quantityToAdd);
