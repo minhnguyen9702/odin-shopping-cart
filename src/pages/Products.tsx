@@ -100,7 +100,7 @@ const Products = () => {
       </div>
       <div className="grow flex flex-wrap justify-center">
         {sortedProducts.map((product) => (
-          <ProductCard product={product} />
+          <ProductCard key={product.id} product={product} />
         ))}
       </div>
     </Wrapper>

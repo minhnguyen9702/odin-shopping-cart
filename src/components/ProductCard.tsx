@@ -18,7 +18,6 @@ type ProductCardProps = {
 const ProductCard = ({ product }: ProductCardProps) => {
   return (
     <Link to={`/products/${product.id}`}
-      key={product.id}
       className="border p-2 m-2 rounded-lg shadow-md hover:ring-2 hover:ring-sky-400 max-w-40 md:max-w-72 max-h-md flex flex-col justify-between"
     >
       <h3>{product.title}</h3>
