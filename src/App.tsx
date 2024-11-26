@@ -3,23 +3,24 @@ import Home from "./pages/Home";
 import Products from "./pages/Products";
 import Cart from "./pages/Cart";
 import ProductDetail from "./pages/ProductDetail";
+import Wrapper from "./components/Wrapper";
 
 const routes = [
   {
     path: "/",
-    element: <Home />,
+    element: <Wrapper><Home /></Wrapper>,
   },
   {
     path: "/products",
-    element: <Products />,
+    element: <Wrapper><Products /></Wrapper>,
   },
   {
     path: "/products/:id",
-    element: <ProductDetail />,
+    element: <Wrapper><ProductDetail /></Wrapper>
   },
   {
     path: "/cart",
-    element: <Cart />,
+    element: <Wrapper><Cart /></Wrapper>,
   },
 ];
 

@@ -1,13 +1,10 @@
-import { useState } from "react";
-import NavBar from "../components/NavBar";
-import Wrapper from "../components/Wrapper";
 import cowboy from "../assets/cowboy.jpg";
 
 //* https://unsplash.com/photos/man-in-blue-jacket-riding-white-horse-during-daytime-axIJBMh5NSw *//
 
 function Home() {
   return (
-    <Wrapper>
+    <>
       <div className="md:flex grow items-center">
         <div className="mx-auto">
           <img
@@ -35,7 +32,7 @@ function Home() {
           </p>
         </div>
       </div>
-    </Wrapper>
+    </>
   );
 }
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Wrapper from "../components/Wrapper";
 import ProductCard from "../components/ProductCard";
 import Loading from "../components/Loading";
 import CustomError from "../components/CustomError";
@@ -68,22 +67,18 @@ const Products = () => {
 
   if (loading) {
     return (
-      <Wrapper>
         <Loading />
-      </Wrapper>
     );
   }
 
   if (error) {
     return (
-      <Wrapper>
         <CustomError err={error} />
-      </Wrapper>
     );
   }
 
   return (
-    <Wrapper>
+    <>
       <div className="flex md:justify-end">
         <p className="p-2">Sort by: </p>
         <select
@@ -103,7 +98,7 @@ const Products = () => {
           <ProductCard key={product.id} product={product} />
         ))}
       </div>
-    </Wrapper>
+    </>
   );
 };
 

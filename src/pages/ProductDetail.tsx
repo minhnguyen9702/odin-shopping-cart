@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import Wrapper from "../components/Wrapper";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import CustomError from "../components/CustomError";
@@ -42,17 +41,17 @@ const ProductDetail = () => {
 
   if (loading) {
     return (
-      <Wrapper>
+      <>
         <Loading />
-      </Wrapper>
+      </>
     );
   }
 
   if (error) {
     return (
-      <Wrapper>
+      <>
         <CustomError err="error" />
-      </Wrapper>
+      </>
     );
   }
 
@@ -67,7 +66,7 @@ const ProductDetail = () => {
 
   if (product)
     return (
-      <Wrapper>
+      <>
         <div className="grow md:flex justify-center">
           <div className="border md:max-w-lg p-2 flex items-center justify-center">
             <img src={product.image} alt={product.title} className="h-auto" />
@@ -110,7 +109,7 @@ const ProductDetail = () => {
             </button>
           </div>
         </div>
-      </Wrapper>
+      </>
     );
 };
 

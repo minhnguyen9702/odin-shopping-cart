@@ -1,12 +1,5 @@
-
-import Wrapper from "../components/Wrapper";
-
 const Cart = () => {
-  return (
-    <Wrapper>
-      <div>Cart is currently empty</div>
-    </Wrapper>
-  );
+  return <div>Cart is currently empty</div>;
 };
 
 export default Cart;
