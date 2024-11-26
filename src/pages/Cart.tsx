@@ -53,7 +53,7 @@ const Cart: React.FC<CartProps> = ({
               </button>
             </div>
           </div>
-          <div className="flex justify-between my-4 space-x-8">
+          <div className="flex justify-between my-4 space-x-8 md:px-4">
             <p className="py-2 text-gray-700">Price: ${product.price}</p>
             <label>
               <input
