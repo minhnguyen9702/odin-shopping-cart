@@ -12,7 +12,11 @@ type Product = {
   image: string;
 };
 
-const ProductDetail = () => {
+type ProductDetailProps = {
+  addToCart: (product: Product) => void;
+};
+
+const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
   const { id } = useParams();
   const [product, setProduct] = useState<Product>();
   const [loading, setLoading] = useState(true);
@@ -93,17 +97,22 @@ const ProductDetail = () => {
               >
                 -
               </button>
-              <button 
+              <button
                 className="md:hidden px-6 py-3 rounded-lg bg-gray-200 hover:bg-gray-400"
-                onClick={() => changeQuantity(1)}>
+                onClick={() => changeQuantity(1)}
+              >
                 +
               </button>
             </div>
             <button
               className="my-2 px-6 py-4 rounded-lg bg-gray-200 hover:bg-gray-400 md:self-end"
-              onClick={() =>
-                console.log(`${quantity} ` + "Items added to cart")
-              }
+              onClick={() => {
+                let quantityToAdd = quantity;
+                while (quantityToAdd > 0) {
+                  quantityToAdd--
+                  addToCart(product)
+                }
+              }}
             >
               Add to Cart
             </button>
