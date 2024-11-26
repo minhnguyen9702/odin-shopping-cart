@@ -69,7 +69,7 @@ const Products = () => {
   if (loading) {
     return (
       <Wrapper>
-        <Loading/>
+        <Loading />
       </Wrapper>
     );
   }
@@ -77,24 +77,27 @@ const Products = () => {
   if (error) {
     return (
       <Wrapper>
-        <CustomError err={error}/>
+        <CustomError err={error} />
       </Wrapper>
     );
   }
 
   return (
     <Wrapper>
-      <select
-        onChange={handleSortChange}
-        value={sortOrder}
-        className="p-2 border rounded-md shadow-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
-      >
-        <option value="default">Default</option>
-        <option value="price-asc">Price: Low to High</option>
-        <option value="price-desc">Price: High to Low</option>
-        <option value="alphabetical-asc">Name: A-Z</option>
-        <option value="alphabetical-desc">Name: Z-A</option>
-      </select>
+      <div className="flex md:justify-end">
+        <p className="p-2">Sort by: </p>
+        <select
+          onChange={handleSortChange}
+          value={sortOrder}
+          className="p-2 border rounded-md shadow-md bg-white text-gray-700 focus:outline-none focus:ring-2 focus:ring-sky-400"
+        >
+          <option value="default">Default</option>
+          <option value="price-asc">Price: Low to High</option>
+          <option value="price-desc">Price: High to Low</option>
+          <option value="alphabetical-asc">Name: A-Z</option>
+          <option value="alphabetical-desc">Name: Z-A</option>
+        </select>
+      </div>
       <div className="grow flex flex-wrap justify-center">
         {sortedProducts.map((product) => (
           <ProductCard product={product} />

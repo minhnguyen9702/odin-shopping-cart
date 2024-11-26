@@ -54,7 +54,8 @@ const ProductDetail = () => {
       </Wrapper>
     );
   }
-  return (
+  
+  if (product) return (
     <Wrapper>
       <div className="grow">
         <h3>{product.title}</h3>
