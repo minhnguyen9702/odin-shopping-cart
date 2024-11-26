@@ -80,8 +80,14 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
             <p className="text-gray-700 text-lg">${product.price}</p>
             <p className="text-gray-500">{product.category}</p>
             <p className="text-gray-700">{product.description}</p>
-            <div className="space-x-2 mt-2">
-              <label htmlFor="quantity">Quantity:</label>
+            <div className="mt-2">
+              <label htmlFor="quantity">Quantity: {"  "}</label>
+              <button
+                className="md:hidden border px-4 py-2 rounded"
+                onClick={() => changeQuantity(-1)}
+              >
+                -
+              </button>
               <input
                 type="number"
                 id="quantity"
@@ -89,16 +95,10 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
                 step="1"
                 value={quantity}
                 onChange={handleQuantityChange}
-                className="border rounded px-3 py-2 w-20 text-center"
+                className="border rounded px-3 py-2 w-16 md:w-20 text-center"
               />
               <button
-                className="md:hidden px-6 py-3 rounded-lg bg-gray-200 hover:bg-gray-400"
-                onClick={() => changeQuantity(-1)}
-              >
-                -
-              </button>
-              <button
-                className="md:hidden px-6 py-3 rounded-lg bg-gray-200 hover:bg-gray-400"
+                className="md:hidden border px-4 py-2 rounded"
                 onClick={() => changeQuantity(1)}
               >
                 +

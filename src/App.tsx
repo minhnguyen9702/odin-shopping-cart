@@ -26,7 +26,6 @@ const App = () => {
       const updatedCart = new Map(prevCart);
 
       if (updatedCart.has(newItem.id)) {
-        // Replace the existing item with a new object
         const existingItem = updatedCart.get(newItem.id);
         if (existingItem) {
           updatedCart.set(newItem.id, {
@@ -44,6 +43,27 @@ const App = () => {
       return updatedCart;
     });
   };
+
+  const updateCart = (productId: number, newQuantity: number) => {
+    setCart((prevCart) => {
+      const updatedCart = new Map(prevCart)
+
+      if (updatedCart.has(productId)) {
+        if (newQuantity > 0) {
+          const existingItem = updatedCart.get(productId)
+          if (existingItem) {
+            updatedCart.set(productId, {
+              ...existingItem,
+              quantity: newQuantity
+            })
+          }
+        } else {
+          updatedCart.delete(productId);
+        }
+      }
+      return updatedCart
+    })
+  }
 
   useEffect(() => {
     const totalQuantity = Array.from(cart.values()).reduce(
@@ -83,7 +103,7 @@ const App = () => {
       path: "/cart",
       element: (
         <Wrapper cartLength={cartLength}>
-          <Cart cart={cart} cartLength={cartLength} />
+          <Cart cart={cart} cartLength={cartLength} updateCart={updateCart}/>
         </Wrapper>
       ),
     },
