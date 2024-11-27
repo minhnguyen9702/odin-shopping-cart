@@ -83,7 +83,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
             <div className="mt-2">
               <label htmlFor="quantity">Quantity: {"  "}</label>
               <button
-                className="md:hidden border px-4 py-2 rounded"
+                className="border px-4 py-2 rounded hover:bg-gray-200"
                 onClick={() => changeQuantity(-1)}
               >
                 -
@@ -95,17 +95,17 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
                 step="1"
                 value={quantity}
                 onChange={handleQuantityChange}
-                className="border rounded px-3 py-2 w-16 md:w-20 text-center"
+                className="border rounded px-3 py-2 w-14 text-center"
               />
               <button
-                className="md:hidden border px-4 py-2 rounded"
+                className="border px-4 py-2 rounded hover:bg-gray-200"
                 onClick={() => changeQuantity(1)}
               >
                 +
               </button>
             </div>
             <button
-              className="my-2 px-5 py-3 rounded border-2 border-black bg-gray-200 hover:bg-gray-400 md:self-end"
+              className="my-2 px-5 py-3 rounded shadow-[3px_3px_0_black] border-2 border-black bg-gray-200 hover:bg-sky-400 md:self-end"
               onClick={() => {
                 const quantityToAdd = quantity;
                 addToCart(product, quantityToAdd);

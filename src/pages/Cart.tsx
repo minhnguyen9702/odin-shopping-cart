@@ -34,7 +34,7 @@ const Cart: React.FC<CartProps> = ({
         <h2 className="text-lg">Cart ({cartLength} items)</h2>
       )}
       {Array.from(cart.values()).map(({ product, quantity }) => (
-        <div key={product.id} className="md:flex justify-between my-4">
+        <div key={product.id} className="md:flex justify-between mt-4">
           <div className="flex justify-start">
             <div className="border p-2 flex items-center justify-center min-h-48 md:min-h-96">
               <img
@@ -53,35 +53,58 @@ const Cart: React.FC<CartProps> = ({
               </button>
             </div>
           </div>
-          <div className="flex justify-between my-4 space-x-8 md:px-4">
+          <div className="flex justify-between mt-4 space-x-0 md:space-x-8 md:px-4">
             <p className="py-2 text-gray-700">Price: ${product.price}</p>
-            <label>
-              <input
-                type="number"
-                value={quantity}
-                min="1"
-                onChange={(e) => {
-                  const newQuantity = parseInt(e.target.value, 10);
-                  updateCart(product.id, newQuantity);
+            <div>
+              <button
+                className="border px-4 py-2 rounded hover:bg-gray-200"
+                onClick={() => {
+                  const subtractQuantity = quantity - 1;
+                  updateCart(product.id, subtractQuantity);
                 }}
-                className="border rounded px-3 py-2 w-16 md:w-20 text-center"
-              />
-            </label>
+              >
+                -
+              </button>
+              <label>
+                <input
+                  type="number"
+                  value={quantity}
+                  min="1"
+                  step="1"
+                  onChange={(e) => {
+                    const newQuantity = parseInt(e.target.value, 10);
+                    updateCart(product.id, newQuantity);
+                  }}
+                  className="border rounded px-3 py-2 w-10 md:w-14 text-center"
+                />
+              </label>
+              <button
+                className="border px-4 py-2 rounded hover:bg-gray-200"
+                onClick={() => {
+                  const addQuantity = quantity + 1;
+                  updateCart(product.id, addQuantity);
+                }}
+              >
+                +
+              </button>
+            </div>
             <p className="py-2 text-gray-700">
               Total Price: ${(parseFloat(product.price) * quantity).toFixed(2)}
             </p>
           </div>
         </div>
       ))}
-      <div className="text-lg text-right">Subtotal : {subTotal}</div>
+      <div className="text-lg text-right text-gray-700">
+        Subtotal : {subTotal}
+      </div>
       <div className="space-x-4 flex justify-end my-2">
         <button
           onClick={clearCart}
-          className="px-5 py-3 rounded bg-gray-200 border-2 border-black hover:bg-gray-400"
+          className="px-5 py-3 rounded shadow-[3px_3px_0_black] bg-gray-200 border-2 border-black hover:bg-sky-400"
         >
           Clear Items
         </button>
-        <button className="px-5 py-3 rounded border-2 border-black bg-sky-200 hover:bg-sky-400">
+        <button className="px-5 py-3 rounded shadow-[3px_3px_0_black] border-2 border-black bg-gray-200 hover:bg-sky-400">
           Check Out
         </button>
       </div>
