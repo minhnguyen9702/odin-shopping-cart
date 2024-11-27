@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import CustomError from "../components/CustomError";
+import Popup from "../components/Popup";
 
 type Product = {
   id: number;
@@ -22,6 +23,7 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [quantity, setQuantity] = useState(1);
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -68,6 +70,12 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
     setQuantity((prev) => prev + value);
   };
 
+  const handleAddToCart = () => {
+    const quantityToAdd = quantity;
+    addToCart(product, quantityToAdd);
+    setIsPopupVisible(true);
+  };
+
   if (product)
     return (
       <>
@@ -107,13 +115,17 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
             <button
               className="my-2 px-5 py-3 rounded shadow-[3px_3px_0_black] border-2 border-black bg-gray-200 hover:bg-sky-400 md:self-end"
               onClick={() => {
-                const quantityToAdd = quantity;
-                addToCart(product, quantityToAdd);
+                handleAddToCart();
               }}
             >
               Add to Cart
             </button>
           </div>
+          <Popup
+              message="Added to cart!"
+              isVisible={isPopupVisible}
+              onClose={() => setIsPopupVisible(false)}
+            />
         </div>
       </>
     );

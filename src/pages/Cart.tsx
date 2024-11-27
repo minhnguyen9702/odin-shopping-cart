@@ -1,4 +1,6 @@
 import Empty from "../components/Empty";
+import Popup from "../components/Popup";
+import { useState } from "react";
 
 type Product = {
   id: number;
@@ -24,6 +26,8 @@ const Cart: React.FC<CartProps> = ({
   subTotal,
   clearCart,
 }) => {
+  const [isPopupVisible, setIsPopupVisible] = useState(false);
+
   if (cartLength === 0) return <Empty />;
 
   return (
@@ -104,10 +108,18 @@ const Cart: React.FC<CartProps> = ({
         >
           Clear Items
         </button>
-        <button className="px-5 py-3 rounded shadow-[3px_3px_0_black] border-2 border-black bg-gray-200 hover:bg-sky-400">
+        <button
+          onClick={() => setIsPopupVisible(true)}
+          className="px-5 py-3 rounded shadow-[3px_3px_0_black] border-2 border-black bg-gray-200 hover:bg-sky-400"
+        >
           Check Out
         </button>
       </div>
+      <Popup
+        message="Items Checked Out!"
+        isVisible={isPopupVisible}
+        onClose={() => setIsPopupVisible(false)}
+      />
     </div>
   );
 };
