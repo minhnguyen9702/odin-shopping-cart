@@ -70,12 +70,6 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
     setQuantity((prev) => prev + value);
   };
 
-  const handleAddToCart = () => {
-    const quantityToAdd = quantity;
-    addToCart(product, quantityToAdd);
-    setIsPopupVisible(true);
-  };
-
   if (product)
     return (
       <>
@@ -115,7 +109,9 @@ const ProductDetail: React.FC<ProductDetailProps> = ({ addToCart }) => {
             <button
               className="my-2 px-5 py-3 rounded shadow-[3px_3px_0_black] border-2 border-black bg-gray-200 hover:bg-sky-400 md:self-end"
               onClick={() => {
-                handleAddToCart();
+                const quantityToAdd = quantity;
+                addToCart(product, quantityToAdd);
+                setIsPopupVisible(true);
               }}
             >
               Add to Cart
