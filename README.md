@@ -1,50 +1,13 @@
-# React + TypeScript + Vite
+# BuyBye!
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+As part of the Odin Project's curriculum, I created a fake e-commerce website using React. The main purpose of this website was to put into practice what I learned about React Router and API fetching. In comparison to previous projects I have created with react, this project is both better styled and better designed. I tried to keep the code as modular and readable by reusing as much code as possible. With this project I also used Typescript instead of Javascript for the first time.
 
-Currently, two official plugins are available:
+## Deploy
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+https://buybye.netlify.app/
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Screenshots
+![homepage](screenshot1.png)
+![products page](screenshot2.png)
+![product listing](screenshot3.png)
+![cart](screenshot4.png)
